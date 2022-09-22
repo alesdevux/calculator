@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { evaluate } from 'mathjs'
 import './Calculator.css'
 
+export const operators: string[] = ['+', '-', '*', '/']
 export const rows: (number | string)[][] = [
   [7, 8, 9, '/'],
   [4, 5, 6, '*'],
@@ -15,6 +16,14 @@ const Calculator = () => {
 
   const createHandlerCell = (cell: Value) => {
     const signEqual: boolean = cell === '='
+    const cellIsOperator: boolean = operators.includes(cell)
+    const lastOfValue: Value = value[value.length - 1]
+    const lastOfValueIsOperator: boolean = operators.includes(lastOfValue)
+
+    if (cellIsOperator && lastOfValueIsOperator) {
+      setValue(value.slice(0, -1) + cell)
+      return
+    }
     signEqual ? setValue(evaluate(value)) : setValue(value + cell)
   }
 

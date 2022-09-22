@@ -1,10 +1,9 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import App from '../src/App'
-import Calculator from '../src/components/Calculator'
+import Calculator, { operators } from '../src/components/Calculator'
 
 const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-const operators: string[] = ['+', '-', '*', '/']
 
 describe('Calculator', () => {
   afterEach(cleanup)
@@ -105,5 +104,20 @@ describe('Calculator', () => {
     fireEvent.click(two)
     fireEvent.click(equal)
     expect(input.value).toBe('14')
+  })
+
+  it('should change operator after click inmediately other operator', () => {
+    render(<Calculator />)
+    const seven = screen.getByText('7')
+    const eight = screen.getByText('8')
+    const plus = screen.getByText('+')
+    const minus = screen.getByText('-')
+    const input: HTMLInputElement = screen.getByRole('textbox')
+
+    fireEvent.click(seven)
+    fireEvent.click(eight)
+    fireEvent.click(plus)
+    fireEvent.click(minus)
+    expect(input.value).toBe('78-')
   })
 })
