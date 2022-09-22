@@ -48,4 +48,10 @@ describe('Calculator', () => {
     render(<Calculator />)
     screen.getByRole('textbox')
   })
+
+  it('should input is readOnly', () => {
+    render(<Calculator />)
+    const input = screen.getByRole('textbox')
+    expect(input.getAttribute('readOnly')).not.toBe(null)
+  })
 })
