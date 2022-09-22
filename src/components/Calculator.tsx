@@ -9,6 +9,7 @@ const Calculator = () => {
   return (
     <div>
       <h1>Calculator</h1>
+      <input />
       <div role='grid'>
         {rows.map((row, rowIndex) => (
           <div key={rowIndex} role='row'>
