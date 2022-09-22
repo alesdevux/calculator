@@ -27,10 +27,10 @@ describe('Calculator', () => {
     numbers.forEach(number => screen.getByText(number))
   })
 
-  it('should render 4 rows', () => {
+  it('should render 5 rows', () => {
     render(<Calculator />)
     const rows = screen.getAllByRole('row')
-    expect(rows).toHaveLength(4)
+    expect(rows).toHaveLength(5)
   })
 
   it('should render operators', () => {
