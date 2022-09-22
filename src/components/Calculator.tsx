@@ -4,7 +4,7 @@ import './Calculator.css'
 
 export const operators: string[] = ['+', '-', '*', '/']
 export const rows: (number | string)[][] = [
-  ['DEL', '/'],
+  ['', 'CE', 'DEL', '/'],
   [7, 8, 9, '*'],
   [4, 5, 6, '-'],
   [1, 2, 3, '+'],
@@ -23,6 +23,10 @@ const Calculator = () => {
 
     if (cell === 'DEL') {
       setValue(value.slice(0, -1))
+      return
+    }
+    if (cell === 'CE') {
+      setValue('')
       return
     }
     if (cellIsOperator && lastOfValueIsOperator) {

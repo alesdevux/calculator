@@ -64,7 +64,7 @@ describe('Calculator', () => {
     screen.getByText('DEL')
   })
 
-  it('should del last character when click on DEL', () => {
+  it('should delete last character when click on DEL', () => {
     render(<Calculator />)
     const five = screen.getByText(5)
     const dot = screen.getByText('.')
@@ -75,6 +75,24 @@ describe('Calculator', () => {
     fireEvent.click(dot)
     fireEvent.click(del)
     expect(input.value).toBe('5')
+  })
+
+  it('should render CE button', () => {
+    render(<Calculator />)
+    screen.getByText('CE')
+  })
+
+  it('should delete all characters when click on CE', () => {
+    render(<Calculator />)
+    const five = screen.getByText(5)
+    const dot = screen.getByText('.')
+    const ce = screen.getByText('CE')
+    const input: HTMLInputElement = screen.getByRole('textbox')
+
+    fireEvent.click(five)
+    fireEvent.click(dot)
+    fireEvent.click(ce)
+    expect(input.value).toBe('')
   })
 
   it('should input show value after user clicking a number', () => {
