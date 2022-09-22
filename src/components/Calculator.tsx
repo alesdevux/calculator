@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { evaluate } from 'mathjs'
 
 export const rows: (number | string)[][] = [
   [7, 8, 9, '/'],
@@ -12,7 +13,8 @@ const Calculator = () => {
   const [value, setValue] = useState<Value>('')
 
   const createHandlerCell = (cell: Value) => {
-    setValue(value + cell)
+    const signEqual = cell === '='
+    signEqual ? setValue(evaluate(value)) : setValue(value + cell)
   }
 
   return (
