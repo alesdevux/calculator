@@ -1,12 +1,23 @@
-export const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+export const rows: number[][] = [
+  [7, 8, 9],
+  [4, 5, 6],
+  [1, 2, 3],
+  [0]
+]
 
 const Calculator = () => {
   return (
     <div>
       <h1>Calculator</h1>
-      <div>
-        {numbers.map(number => (
-          <button key={number}>{number}</button>
+      <div role='grid'>
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} role='row'>
+            {row.map(cell => (
+              <button key={cell} role='cell'>
+                {cell}
+              </button>
+            ))}
+          </div>
         ))}
       </div>
     </div>
