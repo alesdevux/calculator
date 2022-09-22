@@ -43,6 +43,11 @@ describe('Calculator', () => {
     screen.getByText('=')
   })
 
+  it('should render dot for decimal', () => {
+    render(<Calculator />)
+    screen.getByText('.')
+  })
+
   it('should render an input', () => {
     render(<Calculator />)
     screen.getByRole('textbox')
@@ -52,6 +57,24 @@ describe('Calculator', () => {
     render(<Calculator />)
     const input = screen.getByRole('textbox')
     expect(input.getAttribute('readOnly')).not.toBe(null)
+  })
+
+  it('should render DEL button', () => {
+    render(<Calculator />)
+    screen.getByText('DEL')
+  })
+
+  it('should del last character when click on DEL', () => {
+    render(<Calculator />)
+    const five = screen.getByText(5)
+    const dot = screen.getByText('.')
+    const del = screen.getByText('DEL')
+    const input: HTMLInputElement = screen.getByRole('textbox')
+
+    fireEvent.click(five)
+    fireEvent.click(dot)
+    fireEvent.click(del)
+    expect(input.value).toBe('5')
   })
 
   it('should input show value after user clicking a number', () => {

@@ -4,11 +4,11 @@ import './Calculator.css'
 
 export const operators: string[] = ['+', '-', '*', '/']
 export const rows: (number | string)[][] = [
-  ['/'],
+  ['DEL', '/'],
   [7, 8, 9, '*'],
   [4, 5, 6, '-'],
   [1, 2, 3, '+'],
-  [0, '=']
+  [0, '.', '=']
 ]
 
 const Calculator = () => {
@@ -21,6 +21,10 @@ const Calculator = () => {
     const lastOfValue: Value = value[value.length - 1]
     const lastOfValueIsOperator: boolean = operators.includes(lastOfValue)
 
+    if (cell === 'DEL') {
+      setValue(value.slice(0, -1))
+      return
+    }
     if (cellIsOperator && lastOfValueIsOperator) {
       setValue(value.slice(0, -1) + cell)
       return
