@@ -8,8 +8,12 @@ export const rows: (number | string)[][] = [
 ]
 
 const Calculator = () => {
-  type Value = number | string
+  type Value = string
   const [value, setValue] = useState<Value>('')
+
+  const createHandlerCell = (cell: Value) => {
+    setValue(value + cell)
+  }
 
   return (
     <div>
@@ -20,7 +24,7 @@ const Calculator = () => {
           <div key={rowIndex} role='row'>
             {row.map(cell => (
               <button
-                onClick={() => setValue(cell)}
+                onClick={() => createHandlerCell(cell.toString())}
                 key={cell}
                 role='cell'
               >

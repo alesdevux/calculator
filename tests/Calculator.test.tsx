@@ -63,4 +63,17 @@ describe('Calculator', () => {
     fireEvent.click(one)
     expect(input.value).toBe('1')
   })
+
+  it('should input show value after user clicking several numbers', () => {
+    render(<Calculator />)
+    const one = screen.getByText('1')
+    const two = screen.getByText('2')
+    const three = screen.getByText('3')
+    const input: HTMLInputElement = screen.getByRole('textbox')
+
+    fireEvent.click(one)
+    fireEvent.click(two)
+    fireEvent.click(three)
+    expect(input.value).toBe('123')
+  })
 })
