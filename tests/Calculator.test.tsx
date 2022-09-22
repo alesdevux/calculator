@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
-
+import App from '../src/App'
 import Calculator from '../src/components/Calculator'
 
 const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
@@ -15,6 +15,11 @@ describe('Calculator', () => {
 
   it('should render title correctly', () => {
     render(<Calculator />)
+    screen.getByText('Calculator')
+  })
+
+  it('should render in App component', () => {
+    render(<App />)
     screen.getByText('Calculator')
   })
 
