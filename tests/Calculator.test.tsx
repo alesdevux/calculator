@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest'
 import Calculator from '../src/components/Calculator'
 
 const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+const operators: string[] = ['+', '-', '*', '/']
 
 describe('Calculator', () => {
   afterEach(cleanup)
@@ -26,5 +27,10 @@ describe('Calculator', () => {
     render(<Calculator />)
     const rows = screen.getAllByRole('row')
     expect(rows).toHaveLength(4)
+  })
+
+  it('should render operators', () => {
+    render(<Calculator />)
+    operators.forEach(operator => screen.getByText(operator))
   })
 })
