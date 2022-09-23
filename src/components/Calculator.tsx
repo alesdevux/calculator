@@ -27,6 +27,10 @@ const Calculator = () => {
       setError('Error: Introduce an operation before clicking equal sign')
       return
     }
+    if (signEqual && lastOfValueIsOperator) {
+      setError('Error: Introduce an operation before clicking equal sign')
+      return
+    }
     if (cell === 'DEL') {
       setValue(value.slice(0, -1))
       return

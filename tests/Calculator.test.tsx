@@ -186,4 +186,17 @@ describe('Calculator', () => {
     fireEvent.click(five)
     expect(error.textContent).toBe('')
   })
+
+  it('should show error message when user click equal sign with incomplete operation', () => {
+    render(<Calculator />)
+    const five = screen.getByText('5')
+    const plus = screen.getByText('+')
+    const equal = screen.getByText('=')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(five)
+    fireEvent.click(plus)
+    fireEvent.click(equal)
+    expect(error.textContent).toBe('Error: Introduce an operation before clicking equal sign')
+  })
 })
