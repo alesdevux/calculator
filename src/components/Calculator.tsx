@@ -4,7 +4,7 @@ import './Calculator.css'
 
 export const operators: string[] = ['+', '-', '*', '/']
 export const rows: (number | string)[][] = [
-  ['', 'CE', 'DEL', '/'],
+  ['CE', 'C', 'DEL', '/'],
   [7, 8, 9, '*'],
   [4, 5, 6, '-'],
   [1, 2, 3, '+'],
@@ -63,6 +63,11 @@ const Calculator = () => {
     if (cell === 'CE') {
       setValue('')
       return
+    }
+    if (cell === 'C' && lastOfValueIsOperator) return setValue(value.slice(0, -1))
+    if (cell === 'C' && !lastOfValueIsOperator) {
+      const valueWhitoutLastNumber: string = value.slice(0, -lastNumber.length)
+      return setValue(valueWhitoutLastNumber)
     }
     if (cellIsOperator && lastOfValueIsOperator) {
       setValue(value.slice(0, -1) + cell)

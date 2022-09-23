@@ -263,4 +263,37 @@ describe('Calculator', () => {
     fireEvent.click(dot)
     expect(error.textContent).toBe('Error: 3.6 already has a decimal')
   })
+
+  it('should render C button', () => {
+    render(<Calculator />)
+    screen.getByText('C')
+  })
+
+  it('should clean last number of input when click C button', () => {
+    render(<Calculator />)
+    const six = screen.getByText('6')
+    const three = screen.getByText('3')
+    const plus = screen.getByText('+')
+    const c = screen.getByText('C')
+    const input: HTMLInputElement = screen.getByRole('textbox')
+
+    fireEvent.click(six)
+    fireEvent.click(plus)
+    fireEvent.click(three)
+    fireEvent.click(c)
+    expect(input.value).toBe('6+')
+  })
+
+  it('should only clean operator on click C if last value is operator', () => {
+    render(<Calculator />)
+    const two = screen.getByText('2')
+    const plus = screen.getByText('+')
+    const c = screen.getByText('C')
+    const input: HTMLInputElement = screen.getByRole('textbox')
+
+    fireEvent.click(two)
+    fireEvent.click(plus)
+    fireEvent.click(c)
+    expect(input.value).toBe('2')
+  })
 })
