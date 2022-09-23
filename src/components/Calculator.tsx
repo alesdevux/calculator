@@ -14,13 +14,19 @@ export const rows: (number | string)[][] = [
 const Calculator = () => {
   type Value = string
   const [value, setValue] = useState<Value>('')
+  const [error, setError] = useState<string>('')
 
   const createHandlerCell = (cell: Value) => {
+    setError('')
     const signEqual: boolean = cell === '='
     const cellIsOperator: boolean = operators.includes(cell)
     const lastOfValue: Value = value[value.length - 1]
     const lastOfValueIsOperator: boolean = operators.includes(lastOfValue)
 
+    if (signEqual && value === '') {
+      setError('Error: Introduce an operation before clicking equal sign')
+      return
+    }
     if (cell === 'DEL') {
       setValue(value.slice(0, -1))
       return
@@ -40,7 +46,7 @@ const Calculator = () => {
     <>
       <h1>Calculator</h1>
       <p className='error-message' role='error'>
-        Error:
+        {error}
       </p>
       <div className="calculator">
         <input readOnly value={value} />

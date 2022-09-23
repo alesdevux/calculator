@@ -166,4 +166,13 @@ describe('Calculator', () => {
     render(<Calculator />)
     screen.getByRole('error')
   })
+
+  it('should show error message when user click equal sign without input', () => {
+    render(<Calculator />)
+    const equal = screen.getByText('=')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(equal)
+    expect(error.textContent).toBe('Error: Introduce an operation before clicking equal sign')
+  })
 })
