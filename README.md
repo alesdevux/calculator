@@ -4,7 +4,6 @@ This is a simple calculator. It can do addition, subtraction, multiplication, an
 
 ### [Try Calculator](https://calculator-aleswebgit.vercel.app/)
 
-<!-- add image stored in public -->
 ![Calculator](/public/calculator-preview.png)
 
 ### Challange
@@ -21,4 +20,8 @@ Using the React framework, build a functioning calculator with a nice UI using o
 * [Testing Library](https://testing-library.com/)
 * [Happy DOM](https://www.npmjs.com/package/happy-dom)
 
-_Built with ❤️ by [Ales](https://www.linkedin.com/in/ales-dev/)_
+### Future
+- [ ] Refactor calculator logic whit tests support
+
+---
+Built with ❤️ by [Ales](https://www.linkedin.com/in/ales-dev/)
