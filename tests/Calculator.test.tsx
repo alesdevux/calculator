@@ -244,7 +244,7 @@ describe('Calculator', () => {
     fireEvent.click(dot)
     fireEvent.click(six)
     fireEvent.click(dot)
-    expect(error.textContent).toBe('Error: 6.6 already has a decimal')
+    expect(error.textContent).toBe('Error: your number already has a decimal')
   })
 
   it('should save last number to check if already has a dot and show error after operator', () => {
@@ -261,7 +261,7 @@ describe('Calculator', () => {
     fireEvent.click(dot)
     fireEvent.click(six)
     fireEvent.click(dot)
-    expect(error.textContent).toBe('Error: 3.6 already has a decimal')
+    expect(error.textContent).toBe('Error: your number already has a decimal')
   })
 
   it('should render C button', () => {

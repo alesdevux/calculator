@@ -41,29 +41,21 @@ const Calculator = () => {
     getLastNumber(cell)
 
     if (signEqual && value === '') {
-      setError('Error: Introduce an operation before clicking equal sign')
-      return
+      setValue('')
+      return setError('Error: Introduce an operation before clicking equal sign')
     }
     if (signEqual && lastOfValueIsOperator) {
-      setError('Error: Introduce an operation before clicking equal sign')
-      return
+      return setError('Error: Introduce an operation before clicking equal sign')
     }
     if (cell === '.' && (value === '' || lastOfValueIsOperator || lastOfValue === '.')) {
-      setError('Error: Introduce a number before add a decimal')
-      return
+      return setError('Error: Introduce a number before add a decimal')
     }
     if (cell === '.' && lastNumber.includes('.')) {
-      setError(`Error: ${lastNumber} already has a decimal`)
+      setError('Error: your number already has a decimal')
       return
     }
-    if (cell === 'DEL') {
-      setValue(value.slice(0, -1))
-      return
-    }
-    if (cell === 'CE') {
-      setValue('')
-      return
-    }
+    if (cell === 'DEL') return setValue(value.slice(0, -1))
+    if (cell === 'CE') return setValue('')
     if (cell === 'C' && lastOfValueIsOperator) return setValue(value.slice(0, -1))
     if (cell === 'C' && !lastOfValueIsOperator) {
       const valueWhitoutLastNumber: string = value.slice(0, -lastNumber.length)
@@ -73,7 +65,7 @@ const Calculator = () => {
       setValue(value.slice(0, -1) + cell)
       return
     }
-    signEqual ? setValue(evaluate(value)) : setValue(value + cell)
+    signEqual ? setValue(evaluate(value).toString()) : setValue(value + cell)
   }
 
   return (
