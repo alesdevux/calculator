@@ -175,4 +175,15 @@ describe('Calculator', () => {
     fireEvent.click(equal)
     expect(error.textContent).toBe('Error: Introduce an operation before clicking equal sign')
   })
+
+  it('should clean error message when user click a cell', () => {
+    render(<Calculator />)
+    const equal = screen.getByText('=')
+    const five = screen.getByText('5')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(equal)
+    fireEvent.click(five)
+    expect(error.textContent).toBe('')
+  })
 })
