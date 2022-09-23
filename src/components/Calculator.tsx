@@ -15,6 +15,21 @@ const Calculator = () => {
   type Value = string
   const [value, setValue] = useState<Value>('')
   const [error, setError] = useState<string>('')
+  const [lastNumber, setLastNumber] = useState<string>('')
+
+  const getLastNumber = (cell: string) => {
+    let indexOfLastOperator: number = 0
+    operators.forEach(operator => {
+      const index = value.lastIndexOf(operator)
+      if (index > indexOfLastOperator) {
+        indexOfLastOperator = index
+      }
+    })
+
+    indexOfLastOperator === 0
+      ? setLastNumber(value + cell)
+      : setLastNumber(value.substring(indexOfLastOperator + 1) + cell)
+  }
 
   const createHandlerCell = (cell: Value) => {
     setError('')
@@ -22,6 +37,8 @@ const Calculator = () => {
     const cellIsOperator: boolean = operators.includes(cell)
     const lastOfValue: Value = value[value.length - 1]
     const lastOfValueIsOperator: boolean = operators.includes(lastOfValue)
+
+    getLastNumber(cell)
 
     if (signEqual && value === '') {
       setError('Error: Introduce an operation before clicking equal sign')
@@ -33,6 +50,10 @@ const Calculator = () => {
     }
     if (cell === '.' && (value === '' || lastOfValueIsOperator || lastOfValue === '.')) {
       setError('Error: Introduce a number before add a decimal')
+      return
+    }
+    if (cell === '.' && lastNumber.includes('.')) {
+      setError(`Error: ${lastNumber} already has a decimal`)
       return
     }
     if (cell === 'DEL') {

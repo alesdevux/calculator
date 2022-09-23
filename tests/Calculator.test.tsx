@@ -233,4 +233,34 @@ describe('Calculator', () => {
     fireEvent.click(dot)
     expect(error.textContent).toBe('Error: Introduce a number before add a decimal')
   })
+
+  it('should save last number to check if already has a dot and show error', () => {
+    render(<Calculator />)
+    const six = screen.getByText('6')
+    const dot = screen.getByText('.')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(six)
+    fireEvent.click(dot)
+    fireEvent.click(six)
+    fireEvent.click(dot)
+    expect(error.textContent).toBe('Error: 6.6 already has a decimal')
+  })
+
+  it('should save last number to check if already has a dot and show error after operator', () => {
+    render(<Calculator />)
+    const six = screen.getByText('6')
+    const three = screen.getByText('3')
+    const dot = screen.getByText('.')
+    const plus = screen.getByText('+')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(six)
+    fireEvent.click(plus)
+    fireEvent.click(three)
+    fireEvent.click(dot)
+    fireEvent.click(six)
+    fireEvent.click(dot)
+    expect(error.textContent).toBe('Error: 3.6 already has a decimal')
+  })
 })
