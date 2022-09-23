@@ -31,8 +31,8 @@ const Calculator = () => {
       setError('Error: Introduce an operation before clicking equal sign')
       return
     }
-    if (cell === '.' && value === '') {
-      setError('Error: Introduce a number to add a decimal')
+    if (cell === '.' && (value === '' || lastOfValueIsOperator || lastOfValue === '.')) {
+      setError('Error: Introduce a number before add a decimal')
       return
     }
     if (cell === 'DEL') {

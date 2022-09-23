@@ -206,6 +206,31 @@ describe('Calculator', () => {
     const error: HTMLInputElement = screen.getByRole('error')
 
     fireEvent.click(dot)
-    expect(error.textContent).toBe('Error: Introduce a number to add a decimal')
+    expect(error.textContent).toBe('Error: Introduce a number before add a decimal')
+  })
+
+  it('should show error message when click dot after a dot or operator', () => {
+    render(<Calculator />)
+    const five = screen.getByText('5')
+    const dot = screen.getByText('.')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(five)
+    fireEvent.click(dot)
+    fireEvent.click(dot)
+    expect(error.textContent).toBe('Error: Introduce a number before add a decimal')
+  })
+
+  it('should show error message when click dot after a dot or operator', () => {
+    render(<Calculator />)
+    const five = screen.getByText('5')
+    const dot = screen.getByText('.')
+    const plus = screen.getByText('+')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(five)
+    fireEvent.click(plus)
+    fireEvent.click(dot)
+    expect(error.textContent).toBe('Error: Introduce a number before add a decimal')
   })
 })
