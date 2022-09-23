@@ -65,6 +65,9 @@ const Calculator = () => {
       setValue(value.slice(0, -1) + cell)
       return
     }
+    if (cellIsOperator && value === '') {
+      return setError('Error: Introduce a number before add an operator')
+    }
     signEqual ? setValue(evaluate(value).toString()) : setValue(value + cell)
   }
 

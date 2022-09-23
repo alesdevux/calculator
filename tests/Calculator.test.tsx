@@ -296,4 +296,13 @@ describe('Calculator', () => {
     fireEvent.click(c)
     expect(input.value).toBe('2')
   })
+
+  it('should show error when click operator with no number before', () => {
+    render(<Calculator />)
+    const plus = screen.getByText('+')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(plus)
+    expect(error.textContent).toBe('Error: Introduce a number before add an operator')
+  })
 })
