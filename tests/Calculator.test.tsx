@@ -161,4 +161,9 @@ describe('Calculator', () => {
     fireEvent.click(minus)
     expect(input.value).toBe('78-')
   })
+
+  it('render a error message box', () => {
+    render(<Calculator />)
+    screen.getByRole('error')
+  })
 })

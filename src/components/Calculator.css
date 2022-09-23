@@ -7,6 +7,16 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.error-message {
+  color: #E76F51;
+  margin: 1rem auto;
+  height: 4rem;
+  width: 300px;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+}
+
 input {
   width: 100%;
   height: 3rem;
@@ -52,4 +62,8 @@ button:hover {
 .equal {
   grid-column: span 2;
   background-color: #EF8354;
+}
+
+.equal:hover {
+  background-color: #E76F51;
 }

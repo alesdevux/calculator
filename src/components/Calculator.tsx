@@ -39,6 +39,9 @@ const Calculator = () => {
   return (
     <>
       <h1>Calculator</h1>
+      <p className='error-message' role='error'>
+        Error:
+      </p>
       <div className="calculator">
         <input readOnly value={value} />
         <div role='grid' className='buttons'>
