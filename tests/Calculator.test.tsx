@@ -199,4 +199,13 @@ describe('Calculator', () => {
     fireEvent.click(equal)
     expect(error.textContent).toBe('Error: Introduce an operation before clicking equal sign')
   })
+
+  it('should show error message when click dot without number before', () => {
+    render(<Calculator />)
+    const dot = screen.getByText('.')
+    const error: HTMLInputElement = screen.getByRole('error')
+
+    fireEvent.click(dot)
+    expect(error.textContent).toBe('Error: Introduce a number to add a decimal')
+  })
 })
